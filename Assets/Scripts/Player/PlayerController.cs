@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private BallState currentBallState = BallState.Aiming;
     [SerializeField] ArrowHandler arrowHandler;
 
+
+
+
     private void Start()
     {
         ballStartPosition = this.transform.position;
@@ -52,15 +55,15 @@ public class PlayerController : MonoBehaviour
     void SetAim()
     {
         //Set the arrow direction according to input
-        if (Input.GetKey(KeyCode.LeftArrow) && arrowHandler.arrow.eulerAngles.y > arrowHandler.currentArrowAngleYOffset - arrowHandler.maxYRotationClampAngle)
+        if (((Input.GetKey(KeyCode.A)) || (Input.GetKey(KeyCode.LeftArrow))) && arrowHandler.arrow.eulerAngles.y > arrowHandler.currentArrowAngleYOffset - arrowHandler.maxYRotationClampAngle)
             RotateToAim(Vector3.down * arrowHandler.aimingSensitivity * Time.deltaTime);
-        else if (Input.GetKey(KeyCode.RightArrow) && arrowHandler.arrow.eulerAngles.y < arrowHandler.currentArrowAngleYOffset + arrowHandler.maxYRotationClampAngle)
+        else if (((Input.GetKey(KeyCode.D)) || (Input.GetKey(KeyCode.RightArrow))) && arrowHandler.arrow.eulerAngles.y < arrowHandler.currentArrowAngleYOffset + arrowHandler.maxYRotationClampAngle)
             RotateToAim(Vector3.up * arrowHandler.aimingSensitivity * Time.deltaTime);
 
-        else if (Input.GetKey(KeyCode.UpArrow) && arrowHandler.arrow.eulerAngles.x > 335)
+        else if (((Input.GetKey(KeyCode.W)) || (Input.GetKey(KeyCode.UpArrow))) && arrowHandler.arrow.eulerAngles.x > 335)
             RotateToAim(Vector3.left * arrowHandler.aimingSensitivity * Time.deltaTime);
 
-        else if (Input.GetKey(KeyCode.DownArrow) && arrowHandler.arrow.eulerAngles.x < 355)
+        else if (((Input.GetKey(KeyCode.S)) || (Input.GetKey(KeyCode.DownArrow))) && arrowHandler.arrow.eulerAngles.x < 355)
             RotateToAim(Vector3.right * arrowHandler.aimingSensitivity * Time.deltaTime);
 
         //if aim set, then next shot it
